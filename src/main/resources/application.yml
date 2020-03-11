@@ -1,0 +1,79 @@
+### Common
+
+server:
+  port: 44444
+  tomcat:
+    max-threads: 4
+
+spring:
+  application:
+    name: Employeeprimax
+  profiles:
+    active: dev,mysql
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  liquibase:
+    change-log: "classpath:/db/changelog/db.changelog-master.yml"
+    enabled: false
+
+logging:
+  level:
+    root: INFO
+
+
+---
+
+
+
+
+---
+
+### Prod profile
+
+spring:
+  profiles: prod
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/employeeprimax}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+
+
+
+---
+
+
+
+---
+
+
+
+
+---
+
+
+### MySQL profile
+
+spring:
+  profiles: mysql
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/employeeprimax?createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+
+---
+
+
+
+---
+
+
