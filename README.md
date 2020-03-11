@@ -1,3 +1,3 @@
 # ibcs-primaxemployeemanager
 #Maven Project
-#start port - http://localhost:44444/
+#Server port - http://localhost:44444/
