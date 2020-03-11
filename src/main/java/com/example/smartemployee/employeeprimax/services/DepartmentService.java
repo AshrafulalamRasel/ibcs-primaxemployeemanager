@@ -5,10 +5,7 @@ import com.example.smartemployee.employeeprimax.domain.Department;
 import com.example.smartemployee.employeeprimax.domain.Employee;
 import com.example.smartemployee.employeeprimax.dto.request.CreateDepartment;
 import com.example.smartemployee.employeeprimax.dto.request.UpdateDepartment;
-import com.example.smartemployee.employeeprimax.dto.response.DepartmentListResponse;
-import com.example.smartemployee.employeeprimax.dto.response.EmployeeResponses;
-import com.example.smartemployee.employeeprimax.dto.response.GetDepartment;
-import com.example.smartemployee.employeeprimax.dto.response.IdentityResponse;
+import com.example.smartemployee.employeeprimax.dto.response.*;
 import com.example.smartemployee.employeeprimax.repository.DepartmentRepository;
 import com.example.smartemployee.employeeprimax.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -90,6 +87,7 @@ public class DepartmentService {
 
         }
         Department department = departmentOptionalUpdate.get();
+        department.setActive(updateDepartment.isActive());
         department.setName(updateDepartment.getName());
         department.setCode(updateDepartment.getCode());
         departmentRepository.save(department);
@@ -106,6 +104,18 @@ public class DepartmentService {
         }
 
         return getDepartmentArrayList;
+    }
+
+    public DepartmentResponse getDepartment(String id) {
+        Optional<Department> optionalDepartment = departmentRepository.findById(id);
+        if (!optionalDepartment.isPresent()) {
+
+        }
+        return DepartmentResponse.builder()
+                .code(optionalDepartment.get().getCode())
+                .name(optionalDepartment.get().getName())
+                .active(optionalDepartment.get().isActive())
+                .build();
     }
 
 }

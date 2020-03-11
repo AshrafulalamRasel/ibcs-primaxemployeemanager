@@ -1,0 +1,13 @@
+### How to run the project
+#JDK => 1.8
+#Server Port => http://localhost:44444
+
+### Technology
+#Maven
+#Lombok
+#Spring Data Jpa
+#Mysql
+#Spring boot application
+
+
+
